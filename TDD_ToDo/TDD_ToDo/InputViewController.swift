@@ -29,7 +29,7 @@ class InputViewController: UIViewController {
     return dateFormatter
   }()
   
-  func save() {
+  @IBAction func save() {
     guard let titleString = titleTextField.text, titleString.count > 0 else { return }
     let date: Date?
     
@@ -40,17 +40,17 @@ class InputViewController: UIViewController {
     }
     let descriptionString = descriptionTextField.text
     if let locationName = locationTextField.text, locationName.count > 0 {
-        if let address = addressTextField.text, address.count > 0 {
-          geocoder.geocodeAddressString(address) { [unowned self] (placeMarks, error) -> Void in
-            let placeMark = placeMarks?.first
-            let item = ToDoItem(title: titleString,
-                                itemDescription: descriptionString,
-                                timestamp: date?.timeIntervalSince1970,
-                                location: Location(name: locationName,
-                                                   coordinate: placeMark?.location?.coordinate))
-            self.itemManager?.add(item)
-          }
+      if let address = addressTextField.text, address.count > 0 {
+        geocoder.geocodeAddressString(address) { [unowned self] (placeMarks, error) -> Void in
+          let placeMark = placeMarks?.first
+          let item = ToDoItem(title: titleString,
+                              itemDescription: descriptionString,
+                              timestamp: date?.timeIntervalSince1970,
+                              location: Location(name: locationName,
+                                                 coordinate: placeMark?.location?.coordinate))
+          self.itemManager?.add(item)
         }
+      }
     }
   }
 }

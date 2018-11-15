@@ -206,6 +206,9 @@
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="t2m-US-rB8">
                                         <rect key="frame" x="0.0" y="0.0" width="157.5" height="30"/>
                                         <state key="normal" title="Save"/>
+                                        <connections>
+                                            <action selector="save" destination="AFY-La-75Z" eventType="touchUpInside" id="KA2-Fb-oM9"/>
+                                        </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nJh-y0-ZtP">
                                         <rect key="frame" x="177.5" y="0.0" width="157.5" height="30"/>
