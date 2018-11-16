@@ -47,7 +47,6 @@ class ItemListViewControllerTests: XCTestCase {
   func test_AddItem_PresentAddItemViewController() {
     guard let inputViewController = checkOnNilPresentViewController() else { XCTFail(); return }
     XCTAssertNotNil(inputViewController.titleTextField)
-    
   }
   
   func testItemListVC_SharesItemManagerWithInputVC() {
@@ -56,20 +55,24 @@ class ItemListViewControllerTests: XCTestCase {
     XCTAssertTrue(sut.itemManager === inputItemManager)
   }
   
-  //MARK: - Assert
-  private func checkOnNilPresentViewController() -> InputViewController? {
-    XCTAssertNil(sut.presentedViewController)
-    
-    guard let addButton = sut.navigationItem.rightBarButtonItem else { XCTFail(); return nil }
-    guard let action = addButton.action else { XCTFail(); return nil }
-    UIApplication.shared.keyWindow?.rootViewController = sut
-    
-    sut.performSelector(onMainThread: action, with: addButton, waitUntilDone: true)
-    
-    guard let inputViewController = sut.presentedViewController as? InputViewController else { XCTFail(); return nil }
-    XCTAssertNotNil(sut.presentedViewController)
-    return inputViewController
+  func test_ViewDidLoad_SetsItemManagerToDataProvider() {
+    XCTAssertTrue(sut.itemManager === sut.dataProvider.itemManager)
   }
   
+ 
+}
+
+
+extension ItemListViewControllerTests {
   
+  class MockNavigationController : UINavigationController {
+    
+    var lastPushedViewController: UIViewController?
+    
+    override func pushViewController(_ viewController: UIViewController,
+                                     animated: Bool) {
+      lastPushedViewController = viewController
+      super.pushViewController(viewController, animated: animated)
+    }
+  }
 }

@@ -11,14 +11,21 @@ import UIKit
 class ItemListViewController: UIViewController {
   
   @IBOutlet weak var tableView: UITableView!
-  @IBOutlet var dataProvider: (UITableViewDataSource & UITableViewDelegate)!
+  @IBOutlet var dataProvider: (UITableViewDataSource & UITableViewDelegate & ItemManagerSettable)!
   
   let itemManager = ItemManager()
   
   override func viewDidLoad() {
     super.viewDidLoad()
+    dataProvider.itemManager = itemManager
     tableView.dataSource = dataProvider
     tableView.delegate = dataProvider
+    
+  }
+  
+  override func viewWillAppear(_ animated: Bool) {
+    super.viewWillAppear(animated)
+    tableView.reloadData()
   }
 
   @IBAction func addItem(_ sender: Any) {

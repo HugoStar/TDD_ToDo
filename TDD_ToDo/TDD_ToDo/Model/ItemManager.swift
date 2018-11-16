@@ -9,7 +9,7 @@
 import Foundation
 
 
-class ItemManager {
+class ItemManager: NSObject {
   
   var toDoCount: Int { return toDoItems.count }
   var toDoneCont: Int { return toDoneItems.count }
