@@ -140,6 +140,23 @@ class ItemListDataProviderTests: XCTestCase {
   }
   
   
+  func test_SelectionACell_SendsNotification() {
+    
+    let item = ToDoItem(title: "First")
+    sut.itemManager?.add(item)
+    
+    expectation(forNotification: NSNotification.Name(rawValue: "ItemSelectedNotification"), object: nil) { notification in
+      guard let index = notification.userInfo?["index"] as? Int else { return false }
+      return index == 0
+    }
+    
+    tableView.delegate?.tableView!(tableView, didSelectRowAt: IndexPath(row: 0, section: 0))
+    
+    waitForExpectations(timeout: 3, handler: nil)
+    
+  }
+  
+  
   
 }
 

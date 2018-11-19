@@ -126,10 +126,10 @@ class InputViewControllerTests: XCTestCase {
     
     let mockInputViewController = MockInputViewController()
     mockInputViewController.titleTextField = UITextField()
-    mockInputViewController.dateTextField = UITextField()
-    mockInputViewController.locationTextField = UITextField()
-    mockInputViewController.addressTextField = UITextField()
-    mockInputViewController.descriptionTextField = UITextField()
+//    mockInputViewController.dateTextField = UITextField()
+//    mockInputViewController.locationTextField = UITextField()
+//    mockInputViewController.addressTextField = UITextField()
+//    mockInputViewController.descriptionTextField = UITextField()
     mockInputViewController.titleTextField.text = "Test Title"
     
     mockInputViewController.save()
