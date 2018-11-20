@@ -27,7 +27,9 @@ class ItemListDataProviderTests: XCTestCase {
     tableView.delegate = sut
   }
   
-  override func tearDown() {}
+  override func tearDown() {
+    sut.itemManager?.removeAll()
+  }
   
   func test_NumberOfSections_IsTwo() {
     let numberOfSection = tableView.numberOfSections
